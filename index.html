@@ -83,72 +83,67 @@
             margin-bottom: 15px;
         }
 
-        /* Comparaison en bande horizontale compacte */
+        /* Comparaison en bande horizontale compacte - SUR UNE LIGNE */
         .comparison-band {
             background: #fff3cd;
-            padding: 8px 15px;
+            padding: 10px 15px;
             border-radius: 8px;
             border-left: 4px solid #ffc107;
             border-right: 4px solid #ffc107;
             margin-bottom: 15px;
             box-shadow: 0 3px 10px rgba(255, 193, 7, 0.2);
             width: 100%;
-            min-height: 60px;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            min-height: auto;
         }
 
-        .comparison-band h3 {
+        .comparison-title {
             color: #333;
             font-size: 13px;
-            margin-bottom: 4px;
             font-weight: 700;
-            text-align: center;
             line-height: 1.2;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            white-space: nowrap;
         }
 
-        .comparison-band-content {
+        .comparison-content {
             display: flex;
-            justify-content: space-around;
+            justify-content: flex-end;
             align-items: center;
-            gap: 10px;
-            flex-wrap: nowrap;
+            gap: 20px;
+            flex: 1;
+            flex-wrap: wrap;
         }
 
-        .comparison-band-item {
+        .comparison-item {
             display: flex;
-            flex-direction: column;
             align-items: center;
-            padding: 2px 5px;
+            gap: 5px;
             color: #555;
             font-size: 11px;
-            flex: 1;
-            min-width: 100px;
+            white-space: nowrap;
         }
 
-        .comparison-band-label {
+        .comparison-label {
             font-weight: 500;
-            text-align: center;
-            font-size: 10px;
             color: #666;
-            margin-bottom: 2px;
+            font-size: 10px;
             line-height: 1.1;
         }
 
-        .comparison-band-value {
+        .comparison-value {
             font-weight: 700;
-            color: #333;
-            font-size: 13px;
-            text-align: center;
+            color: #28a745;
+            font-size: 12px;
             line-height: 1.1;
         }
 
-        .comparison-band-value.increase {
-            color: #28a745;
-        }
-
-        .comparison-band-value.decrease {
+        .comparison-value.decrease {
             color: #dc3545;
         }
 
@@ -569,35 +564,32 @@
                 margin-bottom: 20px;
             }
 
-            /* Comparaison bande sur desktop - encore plus compacte */
+            /* Comparaison bande sur desktop - SUR UNE LIGNE */
             .comparison-band {
-                padding: 6px 20px;
+                padding: 12px 20px;
                 margin-bottom: 25px;
-                min-height: 55px;
-            }
-
-            .comparison-band h3 {
-                font-size: 14px;
-                margin-bottom: 2px;
-            }
-
-            .comparison-band-content {
                 gap: 20px;
             }
 
-            .comparison-band-item {
-                padding: 1px 10px;
-                font-size: 12px;
-                min-width: 120px;
-            }
-
-            .comparison-band-label {
-                font-size: 11px;
-                margin-bottom: 1px;
-            }
-
-            .comparison-band-value {
+            .comparison-title {
                 font-size: 14px;
+            }
+
+            .comparison-content {
+                gap: 30px;
+            }
+
+            .comparison-item {
+                font-size: 12px;
+                gap: 8px;
+            }
+
+            .comparison-label {
+                font-size: 11px;
+            }
+
+            .comparison-value {
+                font-size: 13px;
             }
 
             /* Ligne des totaux desktop */
@@ -771,17 +763,17 @@
             <h1>🚑 Tarifs Ambulances (avenant 11)</h1>
         </div>
 
-        <!-- Comparaison en bande horizontale compacte -->
+        <!-- Comparaison en bande horizontale compacte - SUR UNE LIGNE -->
         <div class="comparison-band">
-            <h3>📈 Écart entre les deux barèmes</h3>
-            <div class="comparison-band-content">
-                <div class="comparison-band-item">
-                    <span class="comparison-band-label"># en euros</span>
-                    <span class="comparison-band-value increase" id="diffEuroCorner">+5.55 €</span>
+            <div class="comparison-title">📈 Écart entre les deux barèmes</div>
+            <div class="comparison-content">
+                <div class="comparison-item">
+                    <span class="comparison-label"># en euros</span>
+                    <span class="comparison-value increase" id="diffEuroCorner">+5.55 €</span>
                 </div>
-                <div class="comparison-band-item">
-                    <span class="comparison-band-label"># en pourcentage</span>
-                    <span class="comparison-band-value increase" id="diffPercentCorner">+3.20 %</span>
+                <div class="comparison-item">
+                    <span class="comparison-label"># en pourcentage</span>
+                    <span class="comparison-value increase" id="diffPercentCorner">+3.20 %</span>
                 </div>
             </div>
         </div>
@@ -791,7 +783,7 @@
             <!-- Colonne gauche - Ancien total -->
             <div class="total-column">
                 <div class="total-card">
-                    <h3>📊 Ancien Barème (Tarifs majorés)</h3>
+                    <h3>📊 Ancien Barème</h3>
                     <div class="total-amount" id="oldTotalCompact">173.21 €</div>
                 </div>
             </div>
@@ -1176,19 +1168,19 @@
             
             if (diffEuro > 0) {
                 diffEuroElement.textContent = '+' + diffEuro.toFixed(2) + ' €';
-                diffEuroElement.className = 'comparison-band-value increase';
+                diffEuroElement.className = 'comparison-value increase';
                 diffPercentElement.textContent = '+' + diffPercent + ' %';
-                diffPercentElement.className = 'comparison-band-value increase';
+                diffPercentElement.className = 'comparison-value increase';
             } else if (diffEuro < 0) {
                 diffEuroElement.textContent = diffEuro.toFixed(2) + ' €';
-                diffEuroElement.className = 'comparison-band-value decrease';
+                diffEuroElement.className = 'comparison-value decrease';
                 diffPercentElement.textContent = diffPercent + ' %';
-                diffPercentElement.className = 'comparison-band-value decrease';
+                diffPercentElement.className = 'comparison-value decrease';
             } else {
                 diffEuroElement.textContent = '0,00 €';
-                diffEuroElement.className = 'comparison-band-value';
+                diffEuroElement.className = 'comparison-value';
                 diffPercentElement.textContent = '0 %';
-                diffPercentElement.className = 'comparison-band-value';
+                diffPercentElement.className = 'comparison-value';
             }
         }
 
