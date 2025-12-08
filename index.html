@@ -258,31 +258,33 @@
             text-align: right;
         }
 
-        /* Type de zone */
+        /* Type de zone - PLUS COMPACT */
         .zone-section {
             background: #f0f4ff;
-            padding: 12px;
+            padding: 8px 12px;
             border-radius: 8px;
-            margin-bottom: 15px;
+            margin-bottom: 12px;
             border-left: 4px solid #667eea;
+            min-height: auto;
         }
 
         .zone-title {
             font-weight: 600;
             color: #333;
-            margin-bottom: 8px;
-            font-size: 13px;
+            margin-bottom: 6px;
+            font-size: 12px;
             text-align: center;
+            line-height: 1.2;
         }
 
         .zone-type-buttons {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 8px;
+            gap: 6px;
         }
 
         .zone-type-button {
-            padding: 10px;
+            padding: 8px 6px;
             background: white;
             border: 2px solid #ddd;
             border-radius: 6px;
@@ -291,7 +293,9 @@
             font-weight: 600;
             color: #666;
             transition: all 0.3s ease;
-            font-size: 12px;
+            font-size: 11px;
+            line-height: 1.1;
+            min-height: auto;
         }
 
         .zone-type-button.active {
@@ -637,27 +641,28 @@
                 font-size: 18px;
             }
 
-            /* Sections desktop */
+            /* Sections desktop - Zone plus compacte */
             .zone-section {
-                padding: 15px;
-                margin-bottom: 20px;
+                padding: 10px 15px;
+                margin-bottom: 15px;
             }
 
             .zone-title {
-                font-size: 14px;
-                margin-bottom: 12px;
+                font-size: 13px;
+                margin-bottom: 8px;
             }
 
             .zone-type-buttons {
                 display: flex;
                 grid-template-columns: none;
-                gap: 10px;
+                gap: 8px;
             }
 
             .zone-type-button {
-                padding: 12px;
-                font-size: 13px;
+                padding: 10px 8px;
+                font-size: 12px;
                 flex: 1;
+                line-height: 1.1;
             }
 
             .options-section {
@@ -811,7 +816,7 @@
             </div>
         </div>
 
-        <!-- Type de zone -->
+        <!-- Type de zone - PLUS COMPACT -->
         <div class="zone-section">
             <div class="zone-title">Zone de tarification</div>
             <div class="zone-type-buttons">
