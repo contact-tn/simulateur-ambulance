@@ -80,68 +80,75 @@
         .header h1 {
             color: #333;
             font-size: 18px;
-            margin-bottom: 5px;
+            margin-bottom: 15px;
         }
 
-        /* Comparaison en carré jaune compact en haut à droite */
-        .comparison-corner {
-            position: absolute;
-            top: 15px;
-            right: 15px;
+        /* Comparaison en bande horizontale compacte */
+        .comparison-band {
             background: #fff3cd;
-            padding: 10px 12px;
+            padding: 8px 15px;
             border-radius: 8px;
             border-left: 4px solid #ffc107;
-            width: 200px;
+            border-right: 4px solid #ffc107;
+            margin-bottom: 15px;
             box-shadow: 0 3px 10px rgba(255, 193, 7, 0.2);
-            z-index: 10;
+            width: 100%;
+            min-height: 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
-        .comparison-corner h3 {
+        .comparison-band h3 {
             color: #333;
             font-size: 13px;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             font-weight: 700;
             text-align: center;
             line-height: 1.2;
         }
 
-        .comparison-corner-row {
+        .comparison-band-content {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            gap: 10px;
+            flex-wrap: nowrap;
+        }
+
+        .comparison-band-item {
             display: flex;
             flex-direction: column;
-            gap: 6px;
-        }
-
-        .comparison-corner-item {
-            display: flex;
-            justify-content: space-between;
             align-items: center;
-            padding: 4px 0;
+            padding: 2px 5px;
             color: #555;
-            font-size: 12px;
-            min-height: 24px;
-        }
-
-        .comparison-corner-label {
-            font-weight: 500;
+            font-size: 11px;
             flex: 1;
-            text-align: left;
+            min-width: 100px;
         }
 
-        .comparison-corner-value {
+        .comparison-band-label {
+            font-weight: 500;
+            text-align: center;
+            font-size: 10px;
+            color: #666;
+            margin-bottom: 2px;
+            line-height: 1.1;
+        }
+
+        .comparison-band-value {
             font-weight: 700;
             color: #333;
             font-size: 13px;
-            text-align: right;
-            min-width: 80px;
-            padding-left: 10px;
+            text-align: center;
+            line-height: 1.1;
         }
 
-        .comparison-corner-value.increase {
+        .comparison-band-value.increase {
             color: #28a745;
         }
 
-        .comparison-corner-value.decrease {
+        .comparison-band-value.decrease {
             color: #dc3545;
         }
 
@@ -153,7 +160,6 @@
             gap: 15px;
             margin-bottom: 15px;
             flex-wrap: wrap;
-            margin-top: 10px;
         }
 
         /* Colonne gauche - Ancien total */
@@ -556,42 +562,44 @@
 
             .header h1 {
                 font-size: 24px;
-                margin-bottom: 8px;
+                margin-bottom: 20px;
             }
 
-            /* Comparaison compacte sur desktop */
-            .comparison-corner {
-                top: 25px;
-                right: 25px;
-                width: 200px;
-                padding: 12px 15px;
+            /* Comparaison bande sur desktop - encore plus compacte */
+            .comparison-band {
+                padding: 6px 20px;
+                margin-bottom: 25px;
+                min-height: 55px;
             }
 
-            .comparison-corner h3 {
-                font-size: 13px;
-                margin-bottom: 8px;
+            .comparison-band h3 {
+                font-size: 14px;
+                margin-bottom: 2px;
             }
 
-            .comparison-corner-item {
+            .comparison-band-content {
+                gap: 20px;
+            }
+
+            .comparison-band-item {
+                padding: 1px 10px;
                 font-size: 12px;
-                padding: 4px 0;
-                min-height: 24px;
+                min-width: 120px;
             }
 
-            .comparison-corner-label {
-                font-size: 12px;
+            .comparison-band-label {
+                font-size: 11px;
+                margin-bottom: 1px;
             }
 
-            .comparison-corner-value {
-                font-size: 13px;
-                min-width: 80px;
+            .comparison-band-value {
+                font-size: 14px;
             }
 
             /* Ligne des totaux desktop */
             .totals-km-row {
                 gap: 30px;
                 margin-bottom: 25px;
-                margin-top: 20px;
             }
 
             .total-card {
@@ -743,21 +751,6 @@
 </head>
 <body>
     <div class="container">
-        <!-- Comparaison en carré jaune compact en haut à droite -->
-        <div class="comparison-corner">
-            <h3>📈 Écart entre les deux barèmes</h3>
-            <div class="comparison-corner-row">
-                <div class="comparison-corner-item">
-                    <span class="comparison-corner-label"># en euros</span>
-                    <span class="comparison-corner-value" id="diffEuroCorner">-</span>
-                </div>
-                <div class="comparison-corner-item">
-                    <span class="comparison-corner-label"># en pourcentage</span>
-                    <span class="comparison-corner-value" id="diffPercentCorner">-</span>
-                </div>
-            </div>
-        </div>
-
         <!-- En-tête avec logo -->
         <div class="header">
             <div class="logo-container">
@@ -773,13 +766,28 @@
             <h1>🚑 Tarifs Ambulances (avenant 11)</h1>
         </div>
 
+        <!-- Comparaison en bande horizontale compacte -->
+        <div class="comparison-band">
+            <h3>📈 Écart entre les deux barèmes</h3>
+            <div class="comparison-band-content">
+                <div class="comparison-band-item">
+                    <span class="comparison-band-label"># en euros</span>
+                    <span class="comparison-band-value increase" id="diffEuroCorner">+5.55 €</span>
+                </div>
+                <div class="comparison-band-item">
+                    <span class="comparison-band-label"># en pourcentage</span>
+                    <span class="comparison-band-value increase" id="diffPercentCorner">+3.20 %</span>
+                </div>
+            </div>
+        </div>
+
         <!-- Ligne des totaux avec km au centre -->
         <div class="totals-km-row">
             <!-- Colonne gauche - Ancien total -->
             <div class="total-column">
                 <div class="total-card">
                     <h3>📊 Ancien Barème (Tarifs majorés)</h3>
-                    <div class="total-amount" id="oldTotalCompact">-</div>
+                    <div class="total-amount" id="oldTotalCompact">173.21 €</div>
                 </div>
             </div>
 
@@ -798,7 +806,7 @@
             <div class="total-column right">
                 <div class="total-card new">
                     <h3>📊 Nouveau Barème (Tarifs majorés)</h3>
-                    <div class="total-amount" id="newTotalCompact">-</div>
+                    <div class="total-amount" id="newTotalCompact">178.76 €</div>
                 </div>
             </div>
         </div>
@@ -1163,19 +1171,19 @@
             
             if (diffEuro > 0) {
                 diffEuroElement.textContent = '+' + diffEuro.toFixed(2) + ' €';
-                diffEuroElement.className = 'comparison-corner-value increase';
+                diffEuroElement.className = 'comparison-band-value increase';
                 diffPercentElement.textContent = '+' + diffPercent + ' %';
-                diffPercentElement.className = 'comparison-corner-value increase';
+                diffPercentElement.className = 'comparison-band-value increase';
             } else if (diffEuro < 0) {
                 diffEuroElement.textContent = diffEuro.toFixed(2) + ' €';
-                diffEuroElement.className = 'comparison-corner-value decrease';
+                diffEuroElement.className = 'comparison-band-value decrease';
                 diffPercentElement.textContent = diffPercent + ' %';
-                diffPercentElement.className = 'comparison-corner-value decrease';
+                diffPercentElement.className = 'comparison-band-value decrease';
             } else {
                 diffEuroElement.textContent = '0,00 €';
-                diffEuroElement.className = 'comparison-corner-value';
+                diffEuroElement.className = 'comparison-band-value';
                 diffPercentElement.textContent = '0 %';
-                diffPercentElement.className = 'comparison-corner-value';
+                diffPercentElement.className = 'comparison-band-value';
             }
         }
 
@@ -1241,7 +1249,7 @@
             const diffEuro = newTotal - oldTotal;
             const diffPercent = oldTotal > 0 ? (diffEuro / oldTotal * 100).toFixed(2) : 0;
             
-            // Mettre à jour la comparaison dans le coin
+            // Mettre à jour la comparaison dans la bande
             updateComparisonCorner(diffEuro, diffPercent);
         }
 
