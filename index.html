@@ -28,6 +28,7 @@
             padding: 20px;
             max-width: 1100px;
             width: 100%;
+            position: relative;
         }
 
         .header {
@@ -82,27 +83,137 @@
             margin-bottom: 5px;
         }
 
-        /* Saisie manuelle des kilomètres - COMPACT */
-        .km-input-section {
-            background: #f8f9fa;
-            padding: 15px;
+        /* Comparaison en carré jaune compact en haut à droite */
+        .comparison-corner {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: #fff3cd;
+            padding: 10px 12px;
             border-radius: 8px;
-            margin-bottom: 15px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #ffc107;
+            width: 200px;
+            box-shadow: 0 3px 10px rgba(255, 193, 7, 0.2);
+            z-index: 10;
         }
 
-        .km-input-container {
+        .comparison-corner h3 {
+            color: #333;
+            font-size: 13px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .comparison-corner-row {
             display: flex;
             flex-direction: column;
-            gap: 10px;
+            gap: 6px;
+        }
+
+        .comparison-corner-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 4px 0;
+            color: #555;
+            font-size: 12px;
+            min-height: 24px;
+        }
+
+        .comparison-corner-label {
+            font-weight: 500;
+            flex: 1;
+            text-align: left;
+        }
+
+        .comparison-corner-value {
+            font-weight: 700;
+            color: #333;
+            font-size: 13px;
+            text-align: right;
+            min-width: 80px;
+            padding-left: 10px;
+        }
+
+        .comparison-corner-value.increase {
+            color: #28a745;
+        }
+
+        .comparison-corner-value.decrease {
+            color: #dc3545;
+        }
+
+        /* Ligne des totaux avec km au centre */
+        .totals-km-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
+            margin-top: 10px;
+        }
+
+        /* Colonne gauche - Ancien total */
+        .total-column {
+            flex: 1;
+            min-width: 140px;
+        }
+
+        .total-card {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
+            text-align: center;
+        }
+
+        .total-card.new {
+            background: linear-gradient(135deg, #f5f7fa 0%, #e0c3fe 100%);
+            border-left-color: #764ba2;
+        }
+
+        .total-card h3 {
+            color: #333;
+            font-size: 12px;
+            margin-bottom: 8px;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .total-amount {
+            color: #667eea;
+            font-size: 20px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .total-card.new .total-amount {
+            color: #764ba2;
+        }
+
+        /* Centre - Saisie km */
+        .km-center-column {
+            flex: 0 0 auto;
+            min-width: 120px;
+        }
+
+        .km-input-section {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            text-align: center;
         }
 
         .km-input-label {
             font-weight: 600;
             color: #333;
-            font-size: 14px;
-            text-align: center;
-            margin-bottom: 5px;
+            font-size: 13px;
+            margin-bottom: 8px;
+            display: block;
         }
 
         .km-input-wrapper {
@@ -113,7 +224,7 @@
         }
 
         .km-input {
-            width: 80px;
+            width: 70px;
             padding: 8px 10px;
             border: 2px solid #667eea;
             border-radius: 8px;
@@ -136,7 +247,12 @@
             font-size: 16px;
         }
 
-        /* Type de zone - COMPACT */
+        /* Colonne droite - Nouveau total */
+        .total-column.right {
+            text-align: right;
+        }
+
+        /* Type de zone */
         .zone-section {
             background: #f0f4ff;
             padding: 12px;
@@ -183,7 +299,7 @@
             color: #667eea;
         }
 
-        /* Options de majorations - ULTRA COMPACT */
+        /* Options de majorations */
         .options-section {
             background: #f8f9fa;
             padding: 12px;
@@ -242,47 +358,7 @@
             line-height: 1.3;
         }
 
-        /* Comparaison mobile - COMPACT */
-        .comparison-mobile {
-            background: #fff3cd;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 4px solid #ffc107;
-            margin-bottom: 15px;
-        }
-
-        .comparison-mobile h3 {
-            color: #333;
-            font-size: 14px;
-            margin-bottom: 10px;
-            font-weight: 700;
-            text-align: center;
-        }
-
-        .comparison-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 6px 0;
-            color: #555;
-            font-size: 12px;
-        }
-
-        .comparison-value {
-            font-weight: 700;
-            color: #333;
-            font-size: 12px;
-        }
-
-        .comparison-value.increase {
-            color: #28a745;
-        }
-
-        .comparison-value.decrease {
-            color: #dc3545;
-        }
-
-        /* Résultats - COMPACT */
+        /* Résultats détaillés */
         .results {
             display: grid;
             grid-template-columns: 1fr;
@@ -349,7 +425,7 @@
             text-transform: uppercase;
         }
 
-        /* Style pour le total - COMPACT */
+        /* Style pour les totaux détaillés */
         .result-total-container {
             background: white;
             padding: 12px;
@@ -421,7 +497,7 @@
             font-weight: 600;
         }
 
-        /* Détail des majorations - TRÈS PETIT */
+        /* Détail des majorations */
         .majoration-detail {
             font-size: 9px;
             color: #666;
@@ -431,7 +507,7 @@
             line-height: 1.2;
         }
 
-        /* Notes explicatives - EN BAS */
+        /* Notes explicatives */
         .notes {
             background: #e7f3ff;
             padding: 10px;
@@ -441,16 +517,11 @@
             font-size: 10px;
             color: #555;
             line-height: 1.4;
-            display: none; /* Caché sur mobile */
+            display: none;
         }
 
         .notes strong {
             color: #333;
-        }
-
-        /* Desktop - cacher la comparaison mobile */
-        .desktop-only {
-            display: none;
         }
 
         /* Version Desktop */
@@ -488,20 +559,69 @@
                 margin-bottom: 8px;
             }
 
-            /* Sections desktop */
-            .km-input-section {
-                padding: 20px;
+            /* Comparaison compacte sur desktop */
+            .comparison-corner {
+                top: 25px;
+                right: 25px;
+                width: 200px;
+                padding: 12px 15px;
+            }
+
+            .comparison-corner h3 {
+                font-size: 13px;
+                margin-bottom: 8px;
+            }
+
+            .comparison-corner-item {
+                font-size: 12px;
+                padding: 4px 0;
+                min-height: 24px;
+            }
+
+            .comparison-corner-label {
+                font-size: 12px;
+            }
+
+            .comparison-corner-value {
+                font-size: 13px;
+                min-width: 80px;
+            }
+
+            /* Ligne des totaux desktop */
+            .totals-km-row {
+                gap: 30px;
                 margin-bottom: 25px;
+                margin-top: 20px;
+            }
+
+            .total-card {
+                padding: 15px;
+                min-width: 180px;
+            }
+
+            .total-card h3 {
+                font-size: 14px;
+            }
+
+            .total-amount {
+                font-size: 24px;
+            }
+
+            .km-center-column {
+                min-width: 160px;
+            }
+
+            .km-input-section {
+                padding: 15px;
             }
 
             .km-input-label {
-                font-size: 16px;
-                margin-bottom: 15px;
+                font-size: 14px;
             }
 
             .km-input {
-                width: 120px;
-                padding: 12px 15px;
+                width: 100px;
+                padding: 10px 12px;
                 font-size: 22px;
             }
 
@@ -509,6 +629,7 @@
                 font-size: 18px;
             }
 
+            /* Sections desktop */
             .zone-section {
                 padding: 15px;
                 margin-bottom: 20px;
@@ -617,41 +738,26 @@
                 font-size: 11px;
                 margin-top: 25px;
             }
-
-            /* Masquer la comparaison mobile sur desktop */
-            .comparison-mobile {
-                display: none;
-            }
-
-            /* Afficher la comparaison desktop */
-            .desktop-only {
-                display: block;
-            }
-            
-            .comparison-desktop {
-                background: #fff3cd;
-                padding: 20px;
-                border-radius: 8px;
-                border-left: 4px solid #ffc107;
-                margin-top: 25px;
-            }
-
-            .comparison-desktop h3 {
-                color: #333;
-                font-size: 16px;
-                margin-bottom: 12px;
-                font-weight: 700;
-            }
-
-            .comparison-item {
-                font-size: 14px;
-                padding: 8px 0;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Comparaison en carré jaune compact en haut à droite -->
+        <div class="comparison-corner">
+            <h3>📈 Écart entre les deux barèmes</h3>
+            <div class="comparison-corner-row">
+                <div class="comparison-corner-item">
+                    <span class="comparison-corner-label"># en euros</span>
+                    <span class="comparison-corner-value" id="diffEuroCorner">-</span>
+                </div>
+                <div class="comparison-corner-item">
+                    <span class="comparison-corner-label"># en pourcentage</span>
+                    <span class="comparison-corner-value" id="diffPercentCorner">-</span>
+                </div>
+            </div>
+        </div>
+
         <!-- En-tête avec logo -->
         <div class="header">
             <div class="logo-container">
@@ -667,13 +773,32 @@
             <h1>🚑 Tarifs Ambulances (avenant 11)</h1>
         </div>
 
-        <!-- Saisie manuelle des kilomètres -->
-        <div class="km-input-section">
-            <div class="km-input-container">
-                <div class="km-input-label">Distance du trajet (kilomètres)</div>
-                <div class="km-input-wrapper">
-                    <input type="number" id="kmInput" class="km-input" min="1" max="1000" value="50" onchange="updateFromInput()">
-                    <span class="km-unit">km</span>
+        <!-- Ligne des totaux avec km au centre -->
+        <div class="totals-km-row">
+            <!-- Colonne gauche - Ancien total -->
+            <div class="total-column">
+                <div class="total-card">
+                    <h3>📊 Ancien Barème (Tarifs majorés)</h3>
+                    <div class="total-amount" id="oldTotalCompact">-</div>
+                </div>
+            </div>
+
+            <!-- Centre - Saisie km -->
+            <div class="km-center-column">
+                <div class="km-input-section">
+                    <div class="km-input-label">Distance du trajet</div>
+                    <div class="km-input-wrapper">
+                        <input type="number" id="kmInput" class="km-input" min="1" max="1000" value="50" onchange="updateFromInput()">
+                        <span class="km-unit">km</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Colonne droite - Nouveau total -->
+            <div class="total-column right">
+                <div class="total-card new">
+                    <h3>📊 Nouveau Barème (Tarifs majorés)</h3>
+                    <div class="total-amount" id="newTotalCompact">-</div>
                 </div>
             </div>
         </div>
@@ -719,24 +844,11 @@
             </div>
         </div>
 
-        <!-- Comparaison mobile -->
-        <div class="comparison-mobile">
-            <h3>📈 Écart entre les deux barèmes</h3>
-            <div class="comparison-item">
-                <span>Différence en euros</span>
-                <span class="comparison-value" id="diffEuroMobile">-</span>
-            </div>
-            <div class="comparison-item">
-                <span>Différence en pourcentage</span>
-                <span class="comparison-value" id="diffPercentMobile">-</span>
-            </div>
-        </div>
-
-        <!-- Résultats -->
+        <!-- Résultats détaillés -->
         <div class="results">
-            <!-- Ancien tarif -->
+            <!-- Ancien tarif détaillé -->
             <div class="result-card">
-                <h3>📊 Ancien Barème (Tarifs majorés)</h3>
+                <h3>📊 Ancien Barème - Détail</h3>
                 
                 <div class="result-section-title">Tarif de base</div>
                 <div class="result-item">
@@ -791,7 +903,7 @@
                         </div>
                         <div class="result-total-center">
                             <div class="result-total-label">Montant total TTC</div>
-                            <div class="result-total-value" id="oldTotal">-</div>
+                            <div class="result-total-value" id="oldTotalDetailed">-</div>
                         </div>
                         <div class="result-total-details">
                             <div class="cpam-amount" id="oldCpam">-</div>
@@ -801,9 +913,9 @@
                 </div>
             </div>
 
-            <!-- Nouveau tarif -->
+            <!-- Nouveau tarif détaillé -->
             <div class="result-card new">
-                <h3>📊 Nouveau Barème (Tarifs majorés)</h3>
+                <h3>📊 Nouveau Barème - Détail</h3>
                 
                 <div class="result-section-title">Tarif de base</div>
                 <div class="result-item">
@@ -858,7 +970,7 @@
                         </div>
                         <div class="result-total-center">
                             <div class="result-total-label">Montant total TTC</div>
-                            <div class="result-total-value" id="newTotal">-</div>
+                            <div class="result-total-value" id="newTotalDetailed">-</div>
                         </div>
                         <div class="result-total-details">
                             <div class="cpam-amount" id="newCpam">-</div>
@@ -869,20 +981,7 @@
             </div>
         </div>
 
-        <!-- Comparaison desktop -->
-        <div class="comparison-desktop desktop-only">
-            <h3>📈 Écart entre les deux barèmes</h3>
-            <div class="comparison-item">
-                <span>Différence en euros</span>
-                <span class="comparison-value" id="diffEuroDesktop">-</span>
-            </div>
-            <div class="comparison-item">
-                <span>Différence en pourcentage</span>
-                <span class="comparison-value" id="diffPercentDesktop">-</span>
-            </div>
-        </div>
-
-        <!-- Notes explicatives (cachées sur mobile) -->
+        <!-- Notes explicatives -->
         <div class="notes">
             <strong>ℹ️ Règles de calcul :</strong><br>
             • <strong>Forfait agglomération</strong> : 64,08 € incluant les 3 premiers km<br>
@@ -1058,22 +1157,25 @@
             updateCalculation();
         }
 
-        function updateComparisonElements(diffEuro, diffPercent, diffEuroElement, diffPercentElement) {
+        function updateComparisonCorner(diffEuro, diffPercent) {
+            const diffEuroElement = document.getElementById('diffEuroCorner');
+            const diffPercentElement = document.getElementById('diffPercentCorner');
+            
             if (diffEuro > 0) {
                 diffEuroElement.textContent = '+' + diffEuro.toFixed(2) + ' €';
-                diffEuroElement.className = 'comparison-value increase';
+                diffEuroElement.className = 'comparison-corner-value increase';
                 diffPercentElement.textContent = '+' + diffPercent + ' %';
-                diffPercentElement.className = 'comparison-value increase';
+                diffPercentElement.className = 'comparison-corner-value increase';
             } else if (diffEuro < 0) {
                 diffEuroElement.textContent = diffEuro.toFixed(2) + ' €';
-                diffEuroElement.className = 'comparison-value decrease';
+                diffEuroElement.className = 'comparison-corner-value decrease';
                 diffPercentElement.textContent = diffPercent + ' %';
-                diffPercentElement.className = 'comparison-value decrease';
+                diffPercentElement.className = 'comparison-corner-value decrease';
             } else {
                 diffEuroElement.textContent = '0,00 €';
-                diffEuroElement.className = 'comparison-value';
+                diffEuroElement.className = 'comparison-corner-value';
                 diffPercentElement.textContent = '0 %';
-                diffPercentElement.className = 'comparison-value';
+                diffPercentElement.className = 'comparison-corner-value';
             }
         }
 
@@ -1117,6 +1219,10 @@
                 newTotal = resultNew.total;
             }
             
+            // Mettre à jour les totaux compacts (en haut)
+            document.getElementById('oldTotalCompact').textContent = oldTotal.toFixed(2) + ' €';
+            document.getElementById('newTotalCompact').textContent = newTotal.toFixed(2) + ' €';
+            
             // Calcul des parts CPAM et Mutuelle
             const oldCpam = oldTotal * 0.55;
             const oldMutuelle = oldTotal * 0.45;
@@ -1128,17 +1234,15 @@
             document.getElementById('newCpam').textContent = newCpam.toFixed(2) + ' €';
             document.getElementById('newMutuelle').textContent = newMutuelle.toFixed(2) + ' €';
             
+            // Mettre à jour les totaux détaillés
+            document.getElementById('oldTotalDetailed').textContent = oldTotal.toFixed(2) + ' €';
+            document.getElementById('newTotalDetailed').textContent = newTotal.toFixed(2) + ' €';
+            
             const diffEuro = newTotal - oldTotal;
             const diffPercent = oldTotal > 0 ? (diffEuro / oldTotal * 100).toFixed(2) : 0;
             
-            // Mettre à jour les comparaisons mobile et desktop
-            updateComparisonElements(diffEuro, diffPercent, 
-                document.getElementById('diffEuroMobile'), 
-                document.getElementById('diffPercentMobile'));
-            
-            updateComparisonElements(diffEuro, diffPercent,
-                document.getElementById('diffEuroDesktop'),
-                document.getElementById('diffPercentDesktop'));
+            // Mettre à jour la comparaison dans le coin
+            updateComparisonCorner(diffEuro, diffPercent);
         }
 
         function updateResultCard(type, result, km, includeTuph, includeSortieBlanche, includeWeekend, includeNight, includeSupplements) {
@@ -1224,26 +1328,6 @@
                 supplementsRow.style.display = 'none';
                 supplementsRowEmpty.style.display = 'block';
             }
-            
-            let totalToDisplay = 0;
-            
-            if (includeTuph && !includeSortieBlanche && !includeWeekend && !includeNight) {
-                totalToDisplay = result.tuph + (includeSupplements ? result.supplements : 0);
-            }
-            else if (!includeTuph && includeSortieBlanche && !includeWeekend && !includeNight) {
-                totalToDisplay = result.sortie_blanche + (includeSupplements ? result.supplements : 0);
-            }
-            else if (!includeTuph && !includeSortieBlanche && (includeWeekend || includeNight)) {
-                totalToDisplay = result.subtotal_majore + (includeSupplements ? result.supplements : 0);
-            }
-            else if (!includeTuph && !includeSortieBlanche && !includeWeekend && !includeNight && includeSupplements) {
-                totalToDisplay = result.subtotal + result.supplements;
-            }
-            else {
-                totalToDisplay = result.total;
-            }
-            
-            document.getElementById(prefix + 'Total').textContent = totalToDisplay.toFixed(2) + ' €';
         }
 
         document.addEventListener('DOMContentLoaded', function() {
