@@ -15,7 +15,7 @@
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             justify-content: center;
             align-items: flex-start;
@@ -23,29 +23,29 @@
 
         .container {
             background: white;
-            border-radius: 15px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2);
+            padding: 20px;
             max-width: 1100px;
             width: 100%;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 25px;
+            margin-bottom: 15px;
         }
 
         .logo-container {
             display: flex;
             justify-content: center;
             align-items: center;
-            margin-bottom: 15px;
-            gap: 12px;
+            margin-bottom: 10px;
+            gap: 10px;
         }
 
         .logo-circle {
-            width: 60px;
-            height: 60px;
+            width: 50px;
+            height: 50px;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             border-radius: 50%;
             display: flex;
@@ -53,8 +53,8 @@
             align-items: center;
             font-weight: bold;
             color: white;
-            font-size: 20px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+            font-size: 18px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
         }
 
         .logo-text {
@@ -63,65 +63,61 @@
 
         .logo-text h2 {
             color: #333;
-            font-size: 22px;
+            font-size: 20px;
             font-weight: 700;
             margin: 0;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .logo-text .subtitle {
             color: #666;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 500;
-            margin-top: 3px;
+            margin-top: 2px;
         }
 
         .header h1 {
             color: #333;
-            font-size: 22px;
-            margin-bottom: 8px;
+            font-size: 18px;
+            margin-bottom: 5px;
         }
 
-        .header p {
-            color: #666;
-            font-size: 12px;
-        }
-
-        /* Saisie manuelle des kilomètres */
+        /* Saisie manuelle des kilomètres - COMPACT */
         .km-input-section {
             background: #f8f9fa;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
 
         .km-input-container {
             display: flex;
             flex-direction: column;
-            gap: 15px;
+            gap: 10px;
         }
 
         .km-input-label {
             font-weight: 600;
             color: #333;
-            font-size: 16px;
+            font-size: 14px;
             text-align: center;
+            margin-bottom: 5px;
         }
 
         .km-input-wrapper {
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
         }
 
         .km-input {
-            width: 120px;
-            padding: 12px 15px;
+            width: 80px;
+            padding: 8px 10px;
             border: 2px solid #667eea;
-            border-radius: 10px;
-            font-size: 20px;
+            border-radius: 8px;
+            font-size: 18px;
             font-weight: 700;
             text-align: center;
             outline: none;
@@ -131,89 +127,49 @@
 
         .km-input:focus {
             border-color: #764ba2;
-            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.2);
+            box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
         }
 
         .km-unit {
             font-weight: 700;
             color: #333;
-            font-size: 18px;
+            font-size: 16px;
         }
 
-        /* Options de majorations */
-        .options-section {
+        /* Type de zone - COMPACT */
+        .zone-section {
             background: #f0f4ff;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 25px;
-            border-left: 5px solid #667eea;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
         }
 
-        .options-title {
+        .zone-title {
             font-weight: 600;
             color: #333;
-            margin-bottom: 15px;
-            font-size: 14px;
-        }
-
-        .options-grid {
-            display: grid;
-            grid-template-columns: 1fr;
-            gap: 12px;
-        }
-
-        .checkbox-group {
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            padding: 12px;
-            background: white;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .checkbox-group:hover {
-            background: #f8f9fa;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-        }
-
-        .checkbox-group input[type="checkbox"] {
-            width: 20px;
-            height: 20px;
-            cursor: pointer;
-            accent-color: #667eea;
-            margin-top: 2px;
-            flex-shrink: 0;
-        }
-
-        .checkbox-label {
+            margin-bottom: 8px;
             font-size: 13px;
-            color: #333;
-            font-weight: 500;
-            cursor: pointer;
-            flex: 1;
-            line-height: 1.4;
+            text-align: center;
         }
 
         .zone-type-buttons {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 10px;
-            margin-bottom: 15px;
+            gap: 8px;
         }
 
         .zone-type-button {
-            padding: 12px;
+            padding: 10px;
             background: white;
             border: 2px solid #ddd;
-            border-radius: 8px;
+            border-radius: 6px;
             cursor: pointer;
             text-align: center;
             font-weight: 600;
             color: #666;
             transition: all 0.3s ease;
-            font-size: 13px;
+            font-size: 12px;
         }
 
         .zone-type-button.active {
@@ -227,19 +183,78 @@
             color: #667eea;
         }
 
-        /* Comparaison (à la place du curseur sur mobile) */
+        /* Options de majorations - ULTRA COMPACT */
+        .options-section {
+            background: #f8f9fa;
+            padding: 12px;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            border-left: 4px solid #667eea;
+        }
+
+        .options-title {
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 12px;
+            text-align: center;
+            line-height: 1.3;
+        }
+
+        .options-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 8px;
+        }
+
+        .checkbox-group {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 8px;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            min-height: 40px;
+        }
+
+        .checkbox-group:hover {
+            background: #f8f9fa;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .checkbox-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: #667eea;
+            margin-top: 2px;
+            flex-shrink: 0;
+        }
+
+        .checkbox-label {
+            font-size: 11px;
+            color: #333;
+            font-weight: 500;
+            cursor: pointer;
+            flex: 1;
+            line-height: 1.3;
+        }
+
+        /* Comparaison mobile - COMPACT */
         .comparison-mobile {
             background: #fff3cd;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid #ffc107;
-            margin-bottom: 25px;
+            padding: 12px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            margin-bottom: 15px;
         }
 
         .comparison-mobile h3 {
             color: #333;
-            font-size: 16px;
-            margin-bottom: 15px;
+            font-size: 14px;
+            margin-bottom: 10px;
             font-weight: 700;
             text-align: center;
         }
@@ -248,14 +263,15 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 10px 0;
+            padding: 6px 0;
             color: #555;
-            font-size: 14px;
+            font-size: 12px;
         }
 
         .comparison-value {
             font-weight: 700;
             color: #333;
+            font-size: 12px;
         }
 
         .comparison-value.increase {
@@ -266,19 +282,19 @@
             color: #dc3545;
         }
 
-        /* Résultats */
+        /* Résultats - COMPACT */
         .results {
             display: grid;
             grid-template-columns: 1fr;
-            gap: 20px;
-            margin-bottom: 25px;
+            gap: 15px;
+            margin-bottom: 20px;
         }
 
         .result-card {
             background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid #667eea;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #667eea;
         }
 
         .result-card.new {
@@ -288,8 +304,8 @@
 
         .result-card h3 {
             color: #333;
-            font-size: 16px;
-            margin-bottom: 15px;
+            font-size: 14px;
+            margin-bottom: 12px;
             font-weight: 700;
         }
 
@@ -297,9 +313,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 8px 0;
+            padding: 6px 0;
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            font-size: 12px;
+            font-size: 11px;
         }
 
         .result-item:last-child {
@@ -310,6 +326,7 @@
             color: #555;
             font-weight: 500;
             flex: 1;
+            font-size: 11px;
         }
 
         .result-value {
@@ -317,32 +334,33 @@
             font-weight: 600;
             text-align: right;
             flex-shrink: 0;
-            margin-left: 10px;
+            margin-left: 8px;
+            font-size: 11px;
         }
 
         .result-section-title {
             font-weight: 700;
             color: #333;
-            margin-top: 12px;
-            margin-bottom: 8px;
-            padding-top: 8px;
+            margin-top: 10px;
+            margin-bottom: 6px;
+            padding-top: 6px;
             border-top: 2px solid rgba(0, 0, 0, 0.1);
-            font-size: 11px;
+            font-size: 10px;
             text-transform: uppercase;
         }
 
-        /* Nouveau style pour le total */
+        /* Style pour le total - COMPACT */
         .result-total-container {
             background: white;
-            padding: 15px;
-            border-radius: 8px;
-            margin-top: 15px;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 12px;
             position: relative;
-            min-height: 120px;
+            min-height: 90px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border: 2px solid #e0e0e0;
+            border: 1px solid #e0e0e0;
         }
 
         .result-total-wrapper {
@@ -355,10 +373,10 @@
             display: flex;
             justify-content: space-between;
             position: absolute;
-            top: 12px;
-            left: 15px;
-            right: 15px;
-            font-size: 10px;
+            top: 8px;
+            left: 10px;
+            right: 10px;
+            font-size: 9px;
             color: #666;
         }
 
@@ -371,20 +389,20 @@
         }
 
         .result-total-center {
-            margin: 25px 0 12px;
+            margin: 20px 0 8px;
         }
 
         .result-total-label {
             color: #666;
-            font-size: 11px;
-            margin-bottom: 3px;
+            font-size: 10px;
+            margin-bottom: 2px;
         }
 
         .result-total-value {
             color: #667eea;
-            font-size: 28px;
+            font-size: 22px;
             font-weight: 700;
-            line-height: 1.2;
+            line-height: 1.1;
         }
 
         .result-card.new .result-total-value {
@@ -394,8 +412,8 @@
         .result-total-details {
             display: flex;
             justify-content: space-between;
-            margin-top: 8px;
-            font-size: 10px;
+            margin-top: 6px;
+            font-size: 9px;
             color: #666;
         }
 
@@ -403,25 +421,27 @@
             font-weight: 600;
         }
 
-        /* Détail des majorations */
+        /* Détail des majorations - TRÈS PETIT */
         .majoration-detail {
-            font-size: 11px;
+            font-size: 9px;
             color: #666;
-            margin-top: 3px;
+            margin-top: 2px;
             font-style: italic;
             display: block;
+            line-height: 1.2;
         }
 
-        /* Notes explicatives */
+        /* Notes explicatives - EN BAS */
         .notes {
             background: #e7f3ff;
-            padding: 12px;
-            border-radius: 8px;
-            border-left: 4px solid #2196F3;
-            margin-top: 25px;
-            font-size: 11px;
+            padding: 10px;
+            border-radius: 6px;
+            border-left: 3px solid #2196F3;
+            margin-top: 15px;
+            font-size: 10px;
             color: #555;
-            line-height: 1.5;
+            line-height: 1.4;
+            display: none; /* Caché sur mobile */
         }
 
         .notes strong {
@@ -437,135 +457,165 @@
         @media (min-width: 769px) {
             body {
                 align-items: center;
+                padding: 20px;
             }
             
             .container {
-                padding: 40px;
+                padding: 30px;
+                border-radius: 15px;
             }
 
             .header {
-                margin-bottom: 40px;
+                margin-bottom: 30px;
             }
 
             .logo-circle {
-                width: 80px;
-                height: 80px;
-                font-size: 24px;
+                width: 70px;
+                height: 70px;
+                font-size: 22px;
             }
 
             .logo-text h2 {
-                font-size: 28px;
+                font-size: 26px;
             }
 
             .logo-text .subtitle {
-                font-size: 14px;
+                font-size: 13px;
             }
 
             .header h1 {
-                font-size: 28px;
-                margin-bottom: 10px;
+                font-size: 24px;
+                margin-bottom: 8px;
             }
 
-            .header p {
-                font-size: 14px;
-            }
-
-            /* Curseur pour desktop */
-            .km-input-section.desktop-version {
-                padding: 30px;
-                margin-bottom: 40px;
+            /* Sections desktop */
+            .km-input-section {
+                padding: 20px;
+                margin-bottom: 25px;
             }
 
             .km-input-label {
                 font-size: 16px;
-                margin-bottom: 20px;
+                margin-bottom: 15px;
             }
 
             .km-input {
-                width: 150px;
-                padding: 15px 20px;
-                font-size: 24px;
+                width: 120px;
+                padding: 12px 15px;
+                font-size: 22px;
             }
 
             .km-unit {
-                font-size: 20px;
+                font-size: 18px;
             }
 
-            .options-section {
-                padding: 25px;
-                margin-bottom: 40px;
+            .zone-section {
+                padding: 15px;
+                margin-bottom: 20px;
             }
 
-            .options-grid {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-                gap: 15px;
-            }
-
-            .checkbox-label {
-                font-size: 13px;
+            .zone-title {
+                font-size: 14px;
+                margin-bottom: 12px;
             }
 
             .zone-type-buttons {
                 display: flex;
                 grid-template-columns: none;
+                gap: 10px;
             }
 
-            .results {
-                grid-template-columns: 1fr 1fr;
-                gap: 30px;
-                margin-bottom: 30px;
-            }
-
-            .result-card {
-                padding: 25px;
-            }
-
-            .result-item {
+            .zone-type-button {
+                padding: 12px;
                 font-size: 13px;
-                padding: 10px 0;
+                flex: 1;
             }
 
-            .result-section-title {
-                font-size: 12px;
-                margin-top: 15px;
-                margin-bottom: 10px;
-                padding-top: 10px;
-            }
-
-            .result-total-container {
+            .options-section {
                 padding: 20px;
-                min-height: 140px;
+                margin-bottom: 25px;
             }
 
-            .result-total-header {
-                font-size: 11px;
-                top: 15px;
-                left: 20px;
-                right: 20px;
+            .options-title {
+                font-size: 14px;
+                margin-bottom: 15px;
             }
 
-            .result-total-center {
-                margin: 30px 0 15px;
+            .options-grid {
+                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                gap: 12px;
             }
 
-            .result-total-value {
-                font-size: 36px;
+            .checkbox-group {
+                padding: 12px;
+                min-height: auto;
             }
 
-            .result-total-details {
-                font-size: 11px;
+            .checkbox-label {
+                font-size: 12px;
             }
 
             .majoration-detail {
-                font-size: 11px;
+                font-size: 10px;
                 margin-left: 5px;
                 display: inline;
             }
 
-            .notes {
-                padding: 15px;
+            .results {
+                grid-template-columns: 1fr 1fr;
+                gap: 25px;
+                margin-bottom: 25px;
+            }
+
+            .result-card {
+                padding: 20px;
+            }
+
+            .result-item {
                 font-size: 12px;
-                margin-top: 30px;
+                padding: 8px 0;
+            }
+
+            .result-label, .result-value {
+                font-size: 12px;
+            }
+
+            .result-section-title {
+                font-size: 11px;
+                margin-top: 12px;
+                margin-bottom: 8px;
+                padding-top: 8px;
+            }
+
+            .result-total-container {
+                padding: 15px;
+                min-height: 110px;
+            }
+
+            .result-total-header {
+                font-size: 10px;
+                top: 10px;
+                left: 15px;
+                right: 15px;
+            }
+
+            .result-total-center {
+                margin: 25px 0 10px;
+            }
+
+            .result-total-value {
+                font-size: 28px;
+            }
+
+            .result-total-details {
+                font-size: 10px;
+            }
+
+            .notes {
+                display: block;
+                padding: 12px;
+                font-size: 11px;
+                margin-top: 25px;
             }
 
             /* Masquer la comparaison mobile sur desktop */
@@ -580,17 +630,22 @@
             
             .comparison-desktop {
                 background: #fff3cd;
-                padding: 25px;
-                border-radius: 10px;
-                border-left: 5px solid #ffc107;
-                margin-top: 30px;
+                padding: 20px;
+                border-radius: 8px;
+                border-left: 4px solid #ffc107;
+                margin-top: 25px;
             }
 
             .comparison-desktop h3 {
                 color: #333;
                 font-size: 16px;
-                margin-bottom: 15px;
+                margin-bottom: 12px;
                 font-weight: 700;
+            }
+
+            .comparison-item {
+                font-size: 14px;
+                padding: 8px 0;
             }
         }
     </style>
@@ -609,8 +664,7 @@
                 </div>
             </div>
             
-            <h1>🚑 Simulateur Tarifs Ambulances</h1>
-            <p>Comparaison ancien barème vs nouveau barème (Avenant 11 - 1er janvier 2025)</p>
+            <h1>🚑 Tarifs Ambulances (avenant 11)</h1>
         </div>
 
         <!-- Saisie manuelle des kilomètres -->
@@ -624,23 +678,9 @@
             </div>
         </div>
 
-        <!-- Comparaison mobile (visible seulement sur mobile) -->
-        <div class="comparison-mobile">
-            <h3>📈 Écart entre les deux barèmes</h3>
-            <div class="comparison-item">
-                <span>Différence en euros</span>
-                <span class="comparison-value" id="diffEuroMobile">-</span>
-            </div>
-            <div class="comparison-item">
-                <span>Différence en pourcentage</span>
-                <span class="comparison-value" id="diffPercentMobile">-</span>
-            </div>
-        </div>
-
         <!-- Type de zone -->
-        <div class="options-section">
-            <div class="options-title">🔧 Majorations (une seule) + Suppléments (cumulables) | ⚠️ Sortie Blanche = seule</div>
-            
+        <div class="zone-section">
+            <div class="zone-title">Zone de tarification</div>
             <div class="zone-type-buttons">
                 <div class="zone-type-button active" id="zoneAgglo" onclick="selectZone('agglo')">
                     Agglomérations
@@ -649,6 +689,11 @@
                     Départemental
                 </div>
             </div>
+        </div>
+
+        <!-- Options de majorations -->
+        <div class="options-section">
+            <div class="options-title">🔧 Majorations (une seule) + Suppléments (cumulables) | ⚠️ Sortie Blanche = seule</div>
             
             <div class="options-grid">
                 <label class="checkbox-group">
@@ -671,6 +716,19 @@
                     <input type="checkbox" id="supplementsCheckbox" onchange="handleCheckboxChange(this)">
                     <span class="checkbox-label">✈️ Suppléments aéroports/gares/ports (cumulable) <span class="majoration-detail">Aéro: 21,67€ / Gare: 21,67€ / Port: 21,67€</span></span>
                 </label>
+            </div>
+        </div>
+
+        <!-- Comparaison mobile -->
+        <div class="comparison-mobile">
+            <h3>📈 Écart entre les deux barèmes</h3>
+            <div class="comparison-item">
+                <span>Différence en euros</span>
+                <span class="comparison-value" id="diffEuroMobile">-</span>
+            </div>
+            <div class="comparison-item">
+                <span>Différence en pourcentage</span>
+                <span class="comparison-value" id="diffPercentMobile">-</span>
             </div>
         </div>
 
@@ -811,7 +869,7 @@
             </div>
         </div>
 
-        <!-- Comparaison desktop (visible seulement sur desktop) -->
+        <!-- Comparaison desktop -->
         <div class="comparison-desktop desktop-only">
             <h3>📈 Écart entre les deux barèmes</h3>
             <div class="comparison-item">
@@ -824,7 +882,7 @@
             </div>
         </div>
 
-        <!-- Notes explicatives -->
+        <!-- Notes explicatives (cachées sur mobile) -->
         <div class="notes">
             <strong>ℹ️ Règles de calcul :</strong><br>
             • <strong>Forfait agglomération</strong> : 64,08 € incluant les 3 premiers km<br>
