@@ -123,18 +123,34 @@
             border-radius: 8px;
             border-left: 4px solid #ffc107;
             text-align: center;
-            min-height: 70px; /* Réduit de 90px à 70px */
+            min-height: 70px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            max-width: 180px; /* Largeur réduite */
+            max-width: 180px;
+            margin: 0 auto;
+        }
+
+        /* Carte coût péage - MÊME FORMAT QUE CARTE DE COMPARAISON */
+        .peage-card {
+            background: linear-gradient(135deg, #e6f7ff 0%, #b3e0ff 100%);
+            padding: 8px;
+            border-radius: 8px;
+            border-left: 4px solid #4da6ff;
+            text-align: center;
+            min-height: 70px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 180px;
             margin: 0 auto;
         }
 
         .comparison-title {
             color: #333;
-            font-size: 10px; /* Réduit de 12px à 10px */
+            font-size: 10px;
             margin-bottom: 4px;
             font-weight: 700;
             line-height: 1.1;
@@ -156,7 +172,7 @@
         .comparison-label {
             font-weight: 500;
             color: #666;
-            font-size: 8px; /* Réduit */
+            font-size: 8px;
             line-height: 1;
             text-align: left;
             flex: 1;
@@ -165,7 +181,7 @@
         .comparison-value {
             font-weight: 700;
             color: #28a745;
-            font-size: 9px; /* Réduit */
+            font-size: 9px;
             line-height: 1;
             flex-shrink: 0;
             margin-left: 5px;
@@ -194,7 +210,7 @@
             color: #764ba2;
         }
 
-        /* Centre - Saisie km */
+        /* Centre - Saisie km seulement */
         .km-center-column {
             flex: 0 0 auto;
             min-width: 120px;
@@ -255,6 +271,40 @@
             font-weight: 700;
             color: #333;
             font-size: 16px;
+        }
+
+        /* Input pour péage dans la carte */
+        .peage-input-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 5px;
+            margin-top: 5px;
+        }
+
+        .peage-input {
+            width: 60px;
+            padding: 4px 6px;
+            border: 1.5px solid #4da6ff;
+            border-radius: 6px;
+            font-size: 12px;
+            font-weight: 600;
+            text-align: center;
+            outline: none;
+            transition: all 0.3s ease;
+            background: white;
+            color: #333;
+        }
+
+        .peage-input:focus {
+            border-color: #0066cc;
+            box-shadow: 0 0 0 2px rgba(77, 166, 255, 0.2);
+        }
+
+        .peage-unit {
+            font-weight: 600;
+            color: #333;
+            font-size: 11px;
         }
 
         /* Colonne droite - Nouveau total */
@@ -586,7 +636,7 @@
             }
 
             /* Carte de comparaison desktop - taille réduite */
-            .comparison-card {
+            .comparison-card, .peage-card {
                 padding: 10px;
                 min-height: 80px;
                 max-width: 200px;
@@ -639,6 +689,17 @@
 
             .km-unit {
                 font-size: 18px;
+            }
+
+            /* Input péage dans carte desktop */
+            .peage-input {
+                width: 70px;
+                padding: 6px 8px;
+                font-size: 14px;
+            }
+
+            .peage-unit {
+                font-size: 12px;
             }
 
             /* Sections desktop - Zone plus compacte */
@@ -781,12 +842,12 @@
                 </div>
             </div>
 
-            <!-- Centre - Saisie km -->
+            <!-- Centre - Saisie km seulement -->
             <div class="km-center-column">
                 <div class="km-input-section">
                     <div class="km-input-label">Distance du trajet</div>
                     <div class="km-input-wrapper">
-                        <input type="number" id="kmInput" class="km-input" min="1" max="1000" placeholder="0" onchange="updateFromInput()" oninput="updateFromInput()">
+                        <input type="number" id="kmInput" class="km-input" min="0" max="1000" placeholder="0" onchange="updateFromInput()" oninput="updateFromInput()">
                         <span class="km-unit">km</span>
                     </div>
                 </div>
@@ -801,8 +862,9 @@
             </div>
         </div>
 
-        <!-- Carte de comparaison - DIVISÉE PAR 2 EN TAILLE -->
-        <div class="totals-km-row" style="justify-content: center;">
+        <!-- Deuxième ligne : Comparaisons et coût péage -->
+        <div class="totals-km-row" style="justify-content: center; gap: 20px;">
+            <!-- Carte Écart entre les barèmes -->
             <div class="comparison-card">
                 <div class="comparison-title">📈 Écart entre les deux barèmes</div>
                 <div class="comparison-content">
@@ -813,6 +875,21 @@
                     <div class="comparison-row">
                         <div class="comparison-label">Différence en pourcentage</div>
                         <div class="comparison-value" id="diffPercentCorner">0 %</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Carte Coût péage avec saisie -->
+            <div class="peage-card">
+                <div class="comparison-title">🛣️ Coût péage</div>
+                <div class="peage-input-wrapper">
+                    <input type="text" id="peageInput" class="peage-input" placeholder="0.00" onchange="updateFromInput()" oninput="updatePeageInput()">
+                    <span class="peage-unit">€</span>
+                </div>
+                <div class="comparison-content" style="margin-top: 8px;">
+                    <div class="comparison-row">
+                        <div class="comparison-label">Inclus dans total</div>
+                        <div class="comparison-value">✓</div>
                     </div>
                 </div>
             </div>
@@ -879,7 +956,7 @@
                     <span class="result-value" id="oldValorisation">-</span>
                 </div>
                 <div class="result-item">
-                    <span class="result-label">Sous-total</span>
+                    <span class="result-label">Sous-total transport</span>
                     <span class="result-value" id="oldSubtotal">-</span>
                 </div>
 
@@ -908,6 +985,12 @@
                 </div>
                 <div class="result-item" id="oldSupplementsRowEmpty" style="display: block;">
                     <span class="result-label" style="color: #999;">Aucun supplément sélectionné</span>
+                </div>
+
+                <div class="result-section-title">Péage</div>
+                <div class="result-item">
+                    <span class="result-label">Coût péage</span>
+                    <span class="result-value" id="oldPeage">0.00 €</span>
                 </div>
 
                 <div class="result-total-container">
@@ -946,7 +1029,7 @@
                     <span class="result-value" id="newValorisation">-</span>
                 </div>
                 <div class="result-item">
-                    <span class="result-label">Sous-total</span>
+                    <span class="result-label">Sous-total transport</span>
                     <span class="result-value" id="newSubtotal">-</span>
                 </div>
 
@@ -975,6 +1058,12 @@
                 </div>
                 <div class="result-item" id="newSupplementsRowEmpty" style="display: block;">
                     <span class="result-label" style="color: #999;">Aucun supplément sélectionné</span>
+                </div>
+
+                <div class="result-section-title">Péage</div>
+                <div class="result-item">
+                    <span class="result-label">Coût péage</span>
+                    <span class="result-value" id="newPeage">0.00 €</span>
                 </div>
 
                 <div class="result-total-container">
@@ -1013,6 +1102,7 @@
             • <strong>Sortie Blanche</strong> : intervention au point de prise en charge sans transport : 80,00 €<br>
             • <strong>Majorations</strong> : appliquées au sous-total (week-end 50%, nuit 75%)<br>
             • <strong>Suppléments</strong> : aéroports, gares, ports : 21,67 €<br>
+            • <strong>Péage</strong> : coût additionnel ajouté au total final (accepte point et virgule)<br>
             • Les tarifs affichés sont les <strong>tarifs majorés</strong> (Avenant 11 - 1er janvier 2025)
         </div>
     </div>
@@ -1053,7 +1143,7 @@
             else return 0;
         }
 
-        function calculerMontantAmbulance(km, tarif, includeTuph, includeSortieBlanche, includeWeekend, includeNight, includeSupplements) {
+        function calculerMontantAmbulance(km, tarif, includeTuph, includeSortieBlanche, includeWeekend, includeNight, includeSupplements, peage) {
             let forfait = currentZone === 'agglo' ? tarif.forfait_agglomeration : tarif.forfait_departemental;
             let valorisation = getValorisationTrajetCourt(km);
             let km_supplementaires = Math.max(0, km - tarif.km_inclus);
@@ -1092,7 +1182,8 @@
                 supplements = tarif.supplements_aeroports;
             }
             
-            let total = subtotal_majore + tuph + sortie_blanche + supplements;
+            // Ajout du péage au total
+            let total = subtotal_majore + tuph + sortie_blanche + supplements + peage;
             
             return {
                 forfait: forfait,
@@ -1106,6 +1197,7 @@
                 tuph: tuph,
                 sortie_blanche: sortie_blanche,
                 supplements: supplements,
+                peage: peage,
                 total: total
             };
         }
@@ -1124,20 +1216,55 @@
             updateCalculation();
         }
 
+        function updatePeageInput() {
+            const peageInput = document.getElementById('peageInput');
+            let value = peageInput.value;
+            
+            // Remplacer la virgule par un point
+            value = value.replace(',', '.');
+            
+            // Supprimer tout sauf les chiffres, point et signe moins
+            value = value.replace(/[^\d.-]/g, '');
+            
+            // S'assurer qu'il n'y a qu'un seul point décimal
+            const parts = value.split('.');
+            if (parts.length > 2) {
+                value = parts[0] + '.' + parts.slice(1).join('');
+            }
+            
+            // Limiter à 2 décimales
+            if (parts.length === 2 && parts[1].length > 2) {
+                value = parts[0] + '.' + parts[1].substring(0, 2);
+            }
+            
+            // Validation de la valeur
+            let peage = parseFloat(value);
+            if (isNaN(peage) || peage < 0) {
+                peage = 0;
+                peageInput.value = '';
+            } else if (peage > 999.99) {
+                peage = 999.99;
+                peageInput.value = peage.toFixed(2);
+            } else {
+                peageInput.value = value;
+            }
+            
+            updateCalculation();
+        }
+
         function updateFromInput() {
             const kmInput = document.getElementById('kmInput');
             let km = parseInt(kmInput.value);
             
-            // Validation
-            if (isNaN(km) || km < 1) {
-                // Si le champ est vide ou invalide, on affiche 0.00 € partout
-                resetDisplay();
-                return;
+            // Validation km
+            if (isNaN(km) || km < 0) {
+                km = 0;
+                kmInput.value = '';
             }
-            
             if (km > 1000) km = 1000;
             
-            kmInput.value = km;
+            if (km > 0) kmInput.value = km;
+            
             updateCalculation();
         }
 
@@ -1196,6 +1323,10 @@
             document.getElementById('diffEuroCorner').className = 'comparison-value';
             document.getElementById('diffPercentCorner').className = 'comparison-value';
             
+            // Réinitialiser le péage
+            document.getElementById('oldPeage').textContent = '0.00 €';
+            document.getElementById('newPeage').textContent = '0.00 €';
+            
             // Réinitialiser les détails à "-"
             document.getElementById('oldForfait').textContent = '-';
             document.getElementById('oldKmDetail').textContent = '-';
@@ -1250,13 +1381,17 @@
 
         function updateCalculation() {
             const kmInput = document.getElementById('kmInput');
-            let km = parseInt(kmInput.value);
+            const peageInput = document.getElementById('peageInput');
             
-            // Vérifier si le champ est vide ou invalide
-            if (isNaN(km) || km < 1) {
-                resetDisplay();
-                return;
-            }
+            let km = parseInt(kmInput.value);
+            let peage = parseFloat(peageInput.value.replace(',', '.'));
+            
+            // Vérifier si les champs sont vides ou invalides
+            if (isNaN(km) || km < 0) km = 0;
+            if (isNaN(peage) || peage < 0) peage = 0;
+            
+            // Limiter le péage à 999.99
+            if (peage > 999.99) peage = 999.99;
             
             const includeTuph = document.getElementById('tuphCheckbox').checked;
             const includeSortieBlanche = document.getElementById('sortieBlancheCheckbox').checked;
@@ -1264,39 +1399,22 @@
             const includeNight = document.getElementById('nightCheckbox').checked;
             const includeSupplements = document.getElementById('supplementsCheckbox').checked;
             
-            const resultOld = calculerMontantAmbulance(km, ambulanceOld, includeTuph, includeSortieBlanche, includeWeekend, includeNight, includeSupplements);
-            const resultNew = calculerMontantAmbulance(km, ambulanceNew, includeTuph, includeSortieBlanche, includeWeekend, includeNight, includeSupplements);
+            const resultOld = calculerMontantAmbulance(km, ambulanceOld, includeTuph, includeSortieBlanche, includeWeekend, includeNight, includeSupplements, peage);
+            const resultNew = calculerMontantAmbulance(km, ambulanceNew, includeTuph, includeSortieBlanche, includeWeekend, includeNight, includeSupplements, peage);
             
             updateResultCard('old', resultOld, km, includeTuph, includeSortieBlanche, includeWeekend, includeNight, includeSupplements);
             updateResultCard('new', resultNew, km, includeTuph, includeSortieBlanche, includeWeekend, includeNight, includeSupplements);
             
-            let oldTotal = 0;
-            let newTotal = 0;
-            
-            if (includeTuph && !includeSortieBlanche && !includeWeekend && !includeNight) {
-                oldTotal = resultOld.tuph + (includeSupplements ? resultOld.supplements : 0);
-                newTotal = resultNew.tuph + (includeSupplements ? resultNew.supplements : 0);
-            }
-            else if (!includeTuph && includeSortieBlanche && !includeWeekend && !includeNight) {
-                oldTotal = resultOld.sortie_blanche + (includeSupplements ? resultOld.supplements : 0);
-                newTotal = resultNew.sortie_blanche + (includeSupplements ? resultNew.supplements : 0);
-            }
-            else if (!includeTuph && !includeSortieBlanche && (includeWeekend || includeNight)) {
-                oldTotal = resultOld.subtotal_majore + (includeSupplements ? resultOld.supplements : 0);
-                newTotal = resultNew.subtotal_majore + (includeSupplements ? resultNew.supplements : 0);
-            }
-            else if (!includeTuph && !includeSortieBlanche && !includeWeekend && !includeNight && includeSupplements) {
-                oldTotal = resultOld.subtotal + resultOld.supplements;
-                newTotal = resultNew.subtotal + resultNew.supplements;
-            }
-            else {
-                oldTotal = resultOld.total;
-                newTotal = resultNew.total;
-            }
+            let oldTotal = resultOld.total;
+            let newTotal = resultNew.total;
             
             // Mettre à jour les totaux compacts (en haut)
             document.getElementById('oldTotalCompact').textContent = oldTotal.toFixed(2) + ' €';
             document.getElementById('newTotalCompact').textContent = newTotal.toFixed(2) + ' €';
+            
+            // Mettre à jour le coût péage
+            document.getElementById('oldPeage').textContent = peage.toFixed(2) + ' €';
+            document.getElementById('newPeage').textContent = peage.toFixed(2) + ' €';
             
             // Calcul des parts CPAM et Mutuelle
             const oldCpam = oldTotal * 0.55;
@@ -1411,6 +1529,7 @@
             
             // On ajoute l'événement oninput pour une mise à jour en temps réel
             document.getElementById('kmInput').addEventListener('input', updateFromInput);
+            document.getElementById('peageInput').addEventListener('input', updatePeageInput);
         });
     </script>
 
