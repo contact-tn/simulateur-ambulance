@@ -83,70 +83,6 @@
             margin-bottom: 15px;
         }
 
-        /* Comparaison en bande horizontale compacte - SUR UNE LIGNE */
-        .comparison-band {
-            background: #fff3cd;
-            padding: 10px 15px;
-            border-radius: 8px;
-            border-left: 4px solid #ffc107;
-            border-right: 4px solid #ffc107;
-            margin-bottom: 15px;
-            box-shadow: 0 3px 10px rgba(255, 193, 7, 0.2);
-            width: 100%;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 15px;
-            min-height: auto;
-        }
-
-        .comparison-title {
-            color: #333;
-            font-size: 13px;
-            font-weight: 700;
-            line-height: 1.2;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            white-space: nowrap;
-        }
-
-        .comparison-content {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 20px;
-            flex: 1;
-            flex-wrap: wrap;
-        }
-
-        .comparison-item {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            color: #555;
-            font-size: 11px;
-            white-space: nowrap;
-        }
-
-        .comparison-label {
-            font-weight: 500;
-            color: #666;
-            font-size: 10px;
-            line-height: 1.1;
-        }
-
-        .comparison-value {
-            font-weight: 700;
-            color: #28a745;
-            font-size: 12px;
-            line-height: 1.1;
-        }
-
-        .comparison-value.decrease {
-            color: #dc3545;
-        }
-
         /* Ligne des totaux avec km au centre */
         .totals-km-row {
             display: flex;
@@ -169,11 +105,74 @@
             border-radius: 8px;
             border-left: 4px solid #667eea;
             text-align: center;
+            min-height: 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .total-card.new {
             background: linear-gradient(135deg, #f5f7fa 0%, #e0c3fe 100%);
             border-left-color: #764ba2;
+        }
+
+        /* Carte de comparaison - DIVISÉE PAR 2 EN TAILLE */
+        .comparison-card {
+            background: linear-gradient(135deg, #fff9e6 0%, #ffeaa7 100%);
+            padding: 8px;
+            border-radius: 8px;
+            border-left: 4px solid #ffc107;
+            text-align: center;
+            min-height: 70px; /* Réduit de 90px à 70px */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            max-width: 180px; /* Largeur réduite */
+            margin: 0 auto;
+        }
+
+        .comparison-title {
+            color: #333;
+            font-size: 10px; /* Réduit de 12px à 10px */
+            margin-bottom: 4px;
+            font-weight: 700;
+            line-height: 1.1;
+        }
+
+        .comparison-content {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            margin-top: 3px;
+        }
+
+        .comparison-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .comparison-label {
+            font-weight: 500;
+            color: #666;
+            font-size: 8px; /* Réduit */
+            line-height: 1;
+            text-align: left;
+            flex: 1;
+        }
+
+        .comparison-value {
+            font-weight: 700;
+            color: #28a745;
+            font-size: 9px; /* Réduit */
+            line-height: 1;
+            flex-shrink: 0;
+            margin-left: 5px;
+        }
+
+        .comparison-value.decrease {
+            color: #dc3545;
         }
 
         .total-card h3 {
@@ -207,6 +206,10 @@
             border-radius: 8px;
             box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
             text-align: center;
+            min-height: 90px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
 
         .km-input-label {
@@ -235,11 +238,17 @@
             outline: none;
             transition: all 0.3s ease;
             background: white;
+            color: #333;
         }
 
         .km-input:focus {
             border-color: #764ba2;
             box-shadow: 0 0 0 2px rgba(102, 126, 234, 0.2);
+        }
+
+        .km-input::placeholder {
+            color: #999;
+            font-weight: 400;
         }
 
         .km-unit {
@@ -564,34 +573,6 @@
                 margin-bottom: 20px;
             }
 
-            /* Comparaison bande sur desktop - SUR UNE LIGNE */
-            .comparison-band {
-                padding: 12px 20px;
-                margin-bottom: 25px;
-                gap: 20px;
-            }
-
-            .comparison-title {
-                font-size: 14px;
-            }
-
-            .comparison-content {
-                gap: 30px;
-            }
-
-            .comparison-item {
-                font-size: 12px;
-                gap: 8px;
-            }
-
-            .comparison-label {
-                font-size: 11px;
-            }
-
-            .comparison-value {
-                font-size: 13px;
-            }
-
             /* Ligne des totaux desktop */
             .totals-km-row {
                 gap: 30px;
@@ -601,6 +582,32 @@
             .total-card {
                 padding: 15px;
                 min-width: 180px;
+                min-height: 100px;
+            }
+
+            /* Carte de comparaison desktop - taille réduite */
+            .comparison-card {
+                padding: 10px;
+                min-height: 80px;
+                max-width: 200px;
+            }
+
+            .comparison-title {
+                font-size: 11px;
+                margin-bottom: 6px;
+            }
+
+            .comparison-content {
+                gap: 5px;
+                margin-top: 5px;
+            }
+
+            .comparison-label {
+                font-size: 9px;
+            }
+
+            .comparison-value {
+                font-size: 10px;
             }
 
             .total-card h3 {
@@ -617,6 +624,7 @@
 
             .km-input-section {
                 padding: 15px;
+                min-height: 100px;
             }
 
             .km-input-label {
@@ -763,28 +771,13 @@
             <h1>🚑 Tarifs Ambulances (avenant 11)</h1>
         </div>
 
-        <!-- Comparaison en bande horizontale compacte - SUR UNE LIGNE -->
-        <div class="comparison-band">
-            <div class="comparison-title">📈 Écart entre les deux barèmes</div>
-            <div class="comparison-content">
-                <div class="comparison-item">
-                    <span class="comparison-label"># en euros</span>
-                    <span class="comparison-value increase" id="diffEuroCorner">+5.55 €</span>
-                </div>
-                <div class="comparison-item">
-                    <span class="comparison-label"># en pourcentage</span>
-                    <span class="comparison-value increase" id="diffPercentCorner">+3.20 %</span>
-                </div>
-            </div>
-        </div>
-
-        <!-- Ligne des totaux avec km au centre -->
+        <!-- Première ligne : Ancien barème, Distance, Nouveau barème -->
         <div class="totals-km-row">
             <!-- Colonne gauche - Ancien total -->
             <div class="total-column">
                 <div class="total-card">
                     <h3>📊 Ancien Barème</h3>
-                    <div class="total-amount" id="oldTotalCompact">173.21 €</div>
+                    <div class="total-amount" id="oldTotalCompact">0.00 €</div>
                 </div>
             </div>
 
@@ -793,7 +786,7 @@
                 <div class="km-input-section">
                     <div class="km-input-label">Distance du trajet</div>
                     <div class="km-input-wrapper">
-                        <input type="number" id="kmInput" class="km-input" min="1" max="1000" value="50" onchange="updateFromInput()">
+                        <input type="number" id="kmInput" class="km-input" min="1" max="1000" placeholder="0" onchange="updateFromInput()" oninput="updateFromInput()">
                         <span class="km-unit">km</span>
                     </div>
                 </div>
@@ -802,8 +795,25 @@
             <!-- Colonne droite - Nouveau total -->
             <div class="total-column right">
                 <div class="total-card new">
-                    <h3>📊 Nouveau Barème (Tarifs majorés)</h3>
-                    <div class="total-amount" id="newTotalCompact">178.76 €</div>
+                    <h3>📊 Nouveau Barème</h3>
+                    <div class="total-amount" id="newTotalCompact">0.00 €</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Carte de comparaison - DIVISÉE PAR 2 EN TAILLE -->
+        <div class="totals-km-row" style="justify-content: center;">
+            <div class="comparison-card">
+                <div class="comparison-title">📈 Écart entre les deux barèmes</div>
+                <div class="comparison-content">
+                    <div class="comparison-row">
+                        <div class="comparison-label">Différence en euros</div>
+                        <div class="comparison-value" id="diffEuroCorner">0.00 €</div>
+                    </div>
+                    <div class="comparison-row">
+                        <div class="comparison-label">Différence en pourcentage</div>
+                        <div class="comparison-value" id="diffPercentCorner">0 %</div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -908,11 +918,11 @@
                         </div>
                         <div class="result-total-center">
                             <div class="result-total-label">Montant total TTC</div>
-                            <div class="result-total-value" id="oldTotalDetailed">-</div>
+                            <div class="result-total-value" id="oldTotalDetailed">0.00 €</div>
                         </div>
                         <div class="result-total-details">
-                            <div class="cpam-amount" id="oldCpam">-</div>
-                            <div class="mutuelle-amount" id="oldMutuelle">-</div>
+                            <div class="cpam-amount" id="oldCpam">0.00 €</div>
+                            <div class="mutuelle-amount" id="oldMutuelle">0.00 €</div>
                         </div>
                     </div>
                 </div>
@@ -975,11 +985,11 @@
                         </div>
                         <div class="result-total-center">
                             <div class="result-total-label">Montant total TTC</div>
-                            <div class="result-total-value" id="newTotalDetailed">-</div>
+                            <div class="result-total-value" id="newTotalDetailed">0.00 €</div>
                         </div>
                         <div class="result-total-details">
-                            <div class="cpam-amount" id="newCpam">-</div>
-                            <div class="mutuelle-amount" id="newMutuelle">-</div>
+                            <div class="cpam-amount" id="newCpam">0.00 €</div>
+                            <div class="mutuelle-amount" id="newMutuelle">0.00 €</div>
                         </div>
                     </div>
                 </div>
@@ -1119,7 +1129,12 @@
             let km = parseInt(kmInput.value);
             
             // Validation
-            if (isNaN(km) || km < 1) km = 1;
+            if (isNaN(km) || km < 1) {
+                // Si le champ est vide ou invalide, on affiche 0.00 € partout
+                resetDisplay();
+                return;
+            }
+            
             if (km > 1000) km = 1000;
             
             kmInput.value = km;
@@ -1162,6 +1177,55 @@
             updateCalculation();
         }
 
+        function resetDisplay() {
+            // Réinitialiser tous les totaux à 0.00 €
+            document.getElementById('oldTotalCompact').textContent = '0.00 €';
+            document.getElementById('newTotalCompact').textContent = '0.00 €';
+            
+            document.getElementById('oldTotalDetailed').textContent = '0.00 €';
+            document.getElementById('newTotalDetailed').textContent = '0.00 €';
+            
+            document.getElementById('oldCpam').textContent = '0.00 €';
+            document.getElementById('oldMutuelle').textContent = '0.00 €';
+            document.getElementById('newCpam').textContent = '0.00 €';
+            document.getElementById('newMutuelle').textContent = '0.00 €';
+            
+            // Réinitialiser les différences
+            document.getElementById('diffEuroCorner').textContent = '0.00 €';
+            document.getElementById('diffPercentCorner').textContent = '0 %';
+            document.getElementById('diffEuroCorner').className = 'comparison-value';
+            document.getElementById('diffPercentCorner').className = 'comparison-value';
+            
+            // Réinitialiser les détails à "-"
+            document.getElementById('oldForfait').textContent = '-';
+            document.getElementById('oldKmDetail').textContent = '-';
+            document.getElementById('oldValorisation').textContent = '-';
+            document.getElementById('oldSubtotal').textContent = '-';
+            
+            document.getElementById('newForfait').textContent = '-';
+            document.getElementById('newKmDetail').textContent = '-';
+            document.getElementById('newValorisation').textContent = '-';
+            document.getElementById('newSubtotal').textContent = '-';
+            
+            // Cacher toutes les lignes de majorations
+            document.getElementById('oldTuphRow').style.display = 'none';
+            document.getElementById('oldSortieBlancheRow').style.display = 'none';
+            document.getElementById('oldWeekendRow').style.display = 'none';
+            document.getElementById('oldNightRow').style.display = 'none';
+            
+            document.getElementById('newTuphRow').style.display = 'none';
+            document.getElementById('newSortieBlancheRow').style.display = 'none';
+            document.getElementById('newWeekendRow').style.display = 'none';
+            document.getElementById('newNightRow').style.display = 'none';
+            
+            // Cacher les suppléments
+            document.getElementById('oldSupplementsRow').style.display = 'none';
+            document.getElementById('oldSupplementsRowEmpty').style.display = 'block';
+            
+            document.getElementById('newSupplementsRow').style.display = 'none';
+            document.getElementById('newSupplementsRowEmpty').style.display = 'block';
+        }
+
         function updateComparisonCorner(diffEuro, diffPercent) {
             const diffEuroElement = document.getElementById('diffEuroCorner');
             const diffPercentElement = document.getElementById('diffPercentCorner');
@@ -1186,7 +1250,13 @@
 
         function updateCalculation() {
             const kmInput = document.getElementById('kmInput');
-            const km = parseInt(kmInput.value);
+            let km = parseInt(kmInput.value);
+            
+            // Vérifier si le champ est vide ou invalide
+            if (isNaN(km) || km < 1) {
+                resetDisplay();
+                return;
+            }
             
             const includeTuph = document.getElementById('tuphCheckbox').checked;
             const includeSortieBlanche = document.getElementById('sortieBlancheCheckbox').checked;
@@ -1336,7 +1406,11 @@
         }
 
         document.addEventListener('DOMContentLoaded', function() {
-            updateCalculation();
+            // Au chargement, on réinitialise l'affichage
+            resetDisplay();
+            
+            // On ajoute l'événement oninput pour une mise à jour en temps réel
+            document.getElementById('kmInput').addEventListener('input', updateFromInput);
         });
     </script>
 </body>
