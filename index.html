@@ -919,7 +919,7 @@
                 </label>
                 <label class="checkbox-group">
                     <input type="checkbox" id="sortieBlancheCheckbox" onchange="handleCheckboxChange(this)">
-                    <span class="checkbox-label">⚠️ Sortie Blanche (80,00 €) - Exclusive <span class="majoration-detail">Intervention sans transport</span></span>
+                    <span class="checkbox-label">⚠️ Sortie Blanche (80,00 €) - Exclusive <span class="majoration-detail">Intervention sans transport - Montant fixe</span></span>
                 </label>
                 <label class="checkbox-group">
                     <input type="checkbox" id="weekendCheckbox" onchange="handleCheckboxChange(this)">
@@ -1098,17 +1098,17 @@
             &nbsp;&nbsp;- 16-19 km : 3,42 €<br>
             &nbsp;&nbsp;- ≥ 20 km : 0 €<br>
             • <strong>Tarif kilométrique</strong> : 2,44 € par km au-delà de 3 km<br>
-            • <strong>TUPH</strong> : forfait 150 € (+ 2,32 €/km au-delà de 20 km)<br>
-            • <strong>Sortie Blanche</strong> : intervention au point de prise en charge sans transport : 80,00 €<br>
+            • <strong>TUPH</strong> : forfait 150 € + 2,32 €/km au-delà de 20 km (tarif spécifique) + péage + suppléments<br>
+            • <strong>Sortie Blanche</strong> : intervention au point de prise en charge sans transport : 80,00 € (montant fixe, péage non inclus)<br>
             • <strong>Majorations</strong> : appliquées au sous-total (week-end 50%, nuit 75%)<br>
-            • <strong>Suppléments</strong> : aéroports, gares, ports : 21,67 €<br>
-            • <strong>Péage</strong> : coût additionnel ajouté au total final (accepte point et virgule)<br>
+            • <strong>Suppléments</strong> : aéroports, gares, ports : 21,67 € (identique ancien/nouveau)<br>
+            • <strong>Péage</strong> : coût additionnel ajouté au total final (accepte point et virgule), sauf pour Sortie Blanche<br>
             • Les tarifs affichés sont les <strong>tarifs majorés</strong> (Avenant 11 - 1er janvier 2025)
         </div>
     </div>
 
     <script>
-        // DONNÉES TARIFAIRES
+        // DONNÉES TARIFAIRES - MODIFIÉES
         const ambulanceOld = {
             forfait_agglomeration: 58.53,
             forfait_departemental: 52.41,
@@ -1117,7 +1117,7 @@
             tuph_forfait: 150.00,
             tuph_km: 2.32,
             sortie_blanche: 80.00,
-            supplements_aeroports: 10.83
+            supplements_aeroports: 21.67
         };
 
         const ambulanceNew = {
@@ -1144,6 +1144,63 @@
         }
 
         function calculerMontantAmbulance(km, tarif, includeTuph, includeSortieBlanche, includeWeekend, includeNight, includeSupplements, peage) {
+            // TUPH : forfait 150€ + 2,32€/km au-delà de 20km + péage + suppléments
+            if (includeTuph) {
+                let tuph = tarif.tuph_forfait; // 150€ forfait
+                if (km > 20) {
+                    let km_tuph_supplementaires = km - 20;
+                    tuph += km_tuph_supplementaires * tarif.tuph_km; // 2,32€/km au-delà de 20km
+                }
+                
+                let supplements = 0;
+                if (includeSupplements) {
+                    supplements = tarif.supplements_aeroports; // 21,67€
+                }
+                
+                let total = tuph + supplements + peage;
+                
+                return {
+                    forfait: 0,
+                    valorisation: 0,
+                    km_supplementaires: 0,
+                    cout_km: 0,
+                    subtotal: 0,
+                    majoration_weekend: 0,
+                    majoration_nuit: 0,
+                    subtotal_majore: 0,
+                    tuph: tuph,
+                    sortie_blanche: 0,
+                    supplements: supplements,
+                    peage: peage,
+                    total: total
+                };
+            }
+            
+            // SORTIE BLANCHE : TOUJOURS 80€ EXACTEMENT, sans péage ni suppléments
+            if (includeSortieBlanche) {
+                let sortie_blanche = tarif.sortie_blanche; // 80€
+                
+                // Sortie Blanche = 80€ exactement, pas de péage, pas de suppléments
+                let total = sortie_blanche; // Seulement 80€
+                
+                return {
+                    forfait: 0,
+                    valorisation: 0,
+                    km_supplementaires: 0,
+                    cout_km: 0,
+                    subtotal: 0,
+                    majoration_weekend: 0,
+                    majoration_nuit: 0,
+                    subtotal_majore: 0,
+                    tuph: 0,
+                    sortie_blanche: sortie_blanche,
+                    supplements: 0,
+                    peage: 0, // Péage à 0 pour Sortie Blanche
+                    total: total
+                };
+            }
+            
+            // Calcul normal (pas de TUPH ni Sortie Blanche)
             let forfait = currentZone === 'agglo' ? tarif.forfait_agglomeration : tarif.forfait_departemental;
             let valorisation = getValorisationTrajetCourt(km);
             let km_supplementaires = Math.max(0, km - tarif.km_inclus);
@@ -1163,27 +1220,13 @@
             
             let subtotal_majore = subtotal + majoration_weekend + majoration_nuit;
             
-            let tuph = 0;
-            if (includeTuph) {
-                tuph = tarif.tuph_forfait;
-                if (km > 20) {
-                    let km_tuph_supplementaires = km - 20;
-                    tuph += km_tuph_supplementaires * tarif.tuph_km;
-                }
-            }
-            
-            let sortie_blanche = 0;
-            if (includeSortieBlanche) {
-                sortie_blanche = tarif.sortie_blanche;
-            }
-            
             let supplements = 0;
             if (includeSupplements) {
-                supplements = tarif.supplements_aeroports;
+                supplements = tarif.supplements_aeroports; // 21,67€
             }
             
             // Ajout du péage au total
-            let total = subtotal_majore + tuph + sortie_blanche + supplements + peage;
+            let total = subtotal_majore + supplements + peage;
             
             return {
                 forfait: forfait,
@@ -1194,8 +1237,8 @@
                 majoration_weekend: majoration_weekend,
                 majoration_nuit: majoration_nuit,
                 subtotal_majore: subtotal_majore,
-                tuph: tuph,
-                sortie_blanche: sortie_blanche,
+                tuph: 0,
+                sortie_blanche: 0,
                 supplements: supplements,
                 peage: peage,
                 total: total
@@ -1412,9 +1455,9 @@
             document.getElementById('oldTotalCompact').textContent = oldTotal.toFixed(2) + ' €';
             document.getElementById('newTotalCompact').textContent = newTotal.toFixed(2) + ' €';
             
-            // Mettre à jour le coût péage
-            document.getElementById('oldPeage').textContent = peage.toFixed(2) + ' €';
-            document.getElementById('newPeage').textContent = peage.toFixed(2) + ' €';
+            // Mettre à jour le coût péage (0€ pour Sortie Blanche)
+            document.getElementById('oldPeage').textContent = resultOld.peage.toFixed(2) + ' €';
+            document.getElementById('newPeage').textContent = resultNew.peage.toFixed(2) + ' €';
             
             // Calcul des parts CPAM et Mutuelle
             const oldCpam = oldTotal * 0.55;
@@ -1441,10 +1484,8 @@
         function updateResultCard(type, result, km, includeTuph, includeSortieBlanche, includeWeekend, includeNight, includeSupplements) {
             const prefix = type === 'old' ? 'old' : 'new';
             
-            const afficherTarifBase = !(
-                (includeTuph && !includeSortieBlanche && !includeWeekend && !includeNight) ||
-                (!includeTuph && includeSortieBlanche && !includeWeekend && !includeNight)
-            );
+            // Pour TUPH et Sortie Blanche, on n'affiche pas les détails du tarif de base
+            const afficherTarifBase = !(includeTuph || includeSortieBlanche);
             
             if (afficherTarifBase) {
                 document.getElementById(prefix + 'Forfait').textContent = result.forfait.toFixed(2) + ' €';
@@ -1482,7 +1523,7 @@
                     let kmSupp = km - 20;
                     tuphDetail = '150,00 € + (' + kmSupp + ' km × 2,32 €) = ' + result.tuph.toFixed(2) + ' €';
                 } else {
-                    tuphDetail = result.tuph.toFixed(2) + ' €';
+                    tuphDetail = '150,00 €';
                 }
                 document.getElementById(prefix + 'Tuph').textContent = tuphDetail;
             } else {
@@ -1491,7 +1532,7 @@
             
             if (result.sortie_blanche > 0) {
                 sortieBlancheRow.style.display = 'flex';
-                document.getElementById(prefix + 'SortieBlanche').textContent = result.sortie_blanche.toFixed(2) + ' €';
+                document.getElementById(prefix + 'SortieBlanche').textContent = '80,00 €';
             } else {
                 sortieBlancheRow.style.display = 'none';
             }
@@ -1532,10 +1573,5 @@
             document.getElementById('peageInput').addEventListener('input', updatePeageInput);
         });
     </script>
-
-    <!-- Cloudflare Web Analytics -->
-    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "9d5ac63f3fb645528d3f9ade73c44bcf"}'></script>
-    <!-- End Cloudflare Web Analytics -->
-
 </body>
 </html>
